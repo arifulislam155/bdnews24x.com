@@ -1,7 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-export const AdminIndex = () => {
+const AdminIndex = () => {
   return (
-    <div>AdminIndex</div>
-  )
-}
+    <div>
+      <h1 className="text-xl font-bold">Admin Dashboard</h1>
+      <p>Welcome to the admin dashboard!</p>
+    </div>
+  );
+};
+
+export default AdminIndex;

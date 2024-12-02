@@ -1,23 +1,26 @@
-import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AdminIndex } from './dashboard/pages/AdminIndex';
+import AdminIndex from './dashboard/pages/AdminIndex';
+import MainLayout from './dashboard/layout/MainLayout';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/dashboard' element={<MainLayout />}>
-            {/* Redirect from '/dashboard' to '/dashboard/admin' */}
-            <Route element={<Navigate to='/dashboard/admin' />} />
-            {/* Route for '/dashboard/admin' */}
-            <Route path='admin' element={<AdminIndex />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Routes>
+        {/* Main Layout for the dashboard */}
+        <Route path="/dashboard" element={<MainLayout />}>
+          {/* Redirect to /dashboard/admin by default */}
+          <Route index element={<Navigate to="/dashboard/admin" />} />
+          {/* Admin page */}
+          <Route path="admin" element={<AdminIndex />} />
+        </Route>
+        
+        {/* Redirect the root path to /dashboard */}
+        <Route path="/" element={<Navigate to="/dashboard" />} />
+        
+        {/* 404 Page for undefined routes */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
